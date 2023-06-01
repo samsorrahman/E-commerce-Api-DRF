@@ -72,6 +72,8 @@ class Address(models.Model):
     customer = models.OneToOneField(
         Customer, on_delete=models.CASCADE, primary_key=True)
 
+    zip_code = models.CharField(max_length=30, null=True, default='..')
+
 
 class Cart(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
