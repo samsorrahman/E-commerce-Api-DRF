@@ -26,7 +26,13 @@ class ProductSerializer(serializers.Serializer):
 
     # collection = serializers.StringRelatedField()
     # returngin nested
-    collection = CollectionSerializer()
+    # collection = CollectionSerializer()
+
+    # rendering links to each collection
+    collection = serializers.HyperlinkedRelatedField(
+        queryset=Collection.objects.all(),
+        view_name='collection-detail'
+    )
 
     def calculate_tax(self, product: Product):
         return product.unit_price*Decimal(1.1)
