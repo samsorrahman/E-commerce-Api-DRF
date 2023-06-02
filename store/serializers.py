@@ -4,6 +4,11 @@ from decimal import Decimal
 from .models import Product, Collection
 
 
+class CollectionSerializer(serializers.Serializer):
+    id = serializers.IntegerField()
+    title = serializers.CharField(max_length=255)
+
+
 class ProductSerializer(serializers.Serializer):
     id = serializers.IntegerField()
     title = serializers.CharField(max_length=255)
@@ -19,7 +24,9 @@ class ProductSerializer(serializers.Serializer):
 
     # return each collection name
 
-    collection = serializers.StringRelatedField()
+    # collection = serializers.StringRelatedField()
+    # returngin nested
+    collection = CollectionSerializer()
 
     def calculate_tax(self, product: Product):
         return product.unit_price*Decimal(1.1)
