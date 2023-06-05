@@ -54,7 +54,7 @@
 #     # def calculate_tax(self, product: Product):
 #     #     return product.unit_price*Decimal(1.1)
 from decimal import Decimal
-from store.models import Cart, CartItem, Product, Collection, Review
+from store.models import Cart, CartItem, Customer, Product, Collection, Review
 from rest_framework import serializers
 
 
@@ -155,3 +155,11 @@ class UpdateCartItemSerializer(serializers.ModelSerializer):
     class Meta:
         model = CartItem
         fields = ['quantity']
+
+
+class CustomerSerializer(serializers.ModelSerializer):
+    user_id = serializers.IntegerField()
+
+    class Meta:
+        model = Customer
+        fields = ['id', 'user_id', 'phone', 'birth_date', 'membership']
